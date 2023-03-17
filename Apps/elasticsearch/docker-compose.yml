@@ -18,6 +18,19 @@ services:
       - /opt/elasticsearch/config:/usr/share/elasticsearch/config
       - /opt/elasticsearch/data:/usr/share/elasticsearch/data
     restart: unless-stopped
+    x-casaos:
+      author: tigerinus
+      category: Developer
+      container:
+        port_map: "5601"
+      description:
+        en_US: Elasticsearch is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.
+      developer: elastic
+      icon: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-kibana-logo.png
+      tagline:
+        en_US: a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.
+      title:
+        en_US: Elasticsearch
   kibana:
     image: kibana:8.6.2
     deploy:
@@ -32,3 +45,13 @@ services:
       - /opt/kibana/config:/usr/share/kibana/config
       - /opt/kibana/data:/usr/share/kibana/data
     restart: unless-stopped
+
+networks:
+  elasticsearch:
+    driver: overlay
+
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  main_app: elasticsearch
