@@ -1,3 +1,3 @@
-# casaos-appstore-web3
+# YACA
 
-A CasaOS AppStore that comes with variety of Docker apps for Web3
+***Y***et ***A***nother ***C***asaOS ***A***ppStore that comes with variety of Docker apps not included in official AppStore.
