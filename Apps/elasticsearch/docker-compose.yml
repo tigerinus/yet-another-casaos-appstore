@@ -61,4 +61,4 @@ x-casaos:
   architectures:
     - amd64
     - arm64
-  main_app: elasticsearch
+  main_app: kibana
