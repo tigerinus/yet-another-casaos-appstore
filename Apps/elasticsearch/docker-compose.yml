@@ -3,12 +3,13 @@ services:
   elasticsearch:
     image: elasticsearch:8.6.2
     environment:
-      - node.store.allow_mmap=false
-      - discovery.type=single-node
-      - xpack.security.enabled=false
+      - ES_SETTING_DISCOVERY_TYPE=single-node
+      - ES_SETTING_NODE_STORE_ALLOW__MMAP=false
+      - ES_SETTING_XPACK_SECURITY_ENABLED=false
+      - LICENSE=basic
     deploy:
       resources:
-        reservations:
+        limits:
           memory: 1g
     logging:
       options:
@@ -18,6 +19,7 @@ services:
       - 9300
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
+    restart: unless-stopped
     x-casaos:
       author: tigerinus
       category: Developer
@@ -27,31 +29,37 @@ services:
         en_US: Elasticsearch is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.
       developer: elastic
       icon: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-elasticsearch-logo.png
-      tagline:
-        en_US: a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.
       title:
         en_US: Elasticsearch
   kibana:
     image: kibana:8.6.2
     environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - DATA_SEARCH_SESSIONS_ENABLED=false
+      - TELEMETRY_OPTIN=false
+      - XPACK_FLEET_AGENTS_ENABLED=false
+      - XPACK_REPORTING_ENABLED=false
     deploy:
       resources:
-        reservations:
-          memory: 512m
+        limits:
+          memory: 768m
     ports:
       - 5601:5601
     volumes:
       - kibana_data:/usr/share/kibana/data
     depends_on:
       - elasticsearch
+    restart: unless-stopped
     x-casaos:
       author: tigerinus
       category: Developer
       container:
         port_map: "5601"
+      description:
+        en_US: Kibana lets you visualize your Elasticsearch data and navigate the Elastic Stack
+      developer: elastic
       icon: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-kibana-logo.png
-
+      title:
+        en_US: Kibana
 
 volumes:
   elasticsearch_data:
