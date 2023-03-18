@@ -27,6 +27,7 @@ services:
         port_map: "9200"
       description:
         en_US: Elasticsearch is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.
+        zh_CN: Elasticsearch 是一个分布式的、RESTful 风格的搜索和分析引擎，能够解决越来越多的用例。
       developer: elastic
       icon: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-elasticsearch-logo.png
       title:
@@ -56,6 +57,7 @@ services:
         port_map: "5601"
       description:
         en_US: Kibana lets you visualize your Elasticsearch data and navigate the Elastic Stack
+        zh_CN: Kibana 让您可以可视化 Elasticsearch 数据并导航 Elastic Stack
       developer: elastic
       icon: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-kibana-logo.png
       title:

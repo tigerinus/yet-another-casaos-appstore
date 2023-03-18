@@ -1,0 +1,37 @@
+name: flink
+services:
+  jobmanager:
+    image: flink:1.16
+    command: jobmanager
+    ports:
+      - "8081:8081"
+    environment:
+      - "FLINK_PROPERTIES=jobmanager.rpc.address: jobmanager"
+    restart: unless-stopped
+    x-casaos:
+      author: tigerinus
+      category: Developer
+      container:
+        port_map: "8081"
+      description:
+        en_US: Apache Flink is an open-source stream processing framework with powerful stream- and batch-processing capabilities.
+        zh_CN: Apache Flink 是一个开源的流处理框架，具有强大的流和批处理功能。
+      developer: Apache Software Foundation
+      icon: https://svn.apache.org/repos/asf/flink/site/img/logo/png/200/flink_squirrel_200_color.png
+      title:
+        en_US: Apache Flink
+  taskmanager:
+    image: flink:1.16
+    command: taskmanager
+    scale: 2
+    environment:
+      - "FLINK_PROPERTIES=jobmanager.rpc.address: jobmanager"
+    depends_on:
+      - jobmanager
+    restart: unless-stopped
+    x-casaos:
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  main_app: jobmanager
