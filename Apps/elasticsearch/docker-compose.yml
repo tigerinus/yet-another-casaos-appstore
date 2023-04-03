@@ -21,17 +21,7 @@ services:
       - elasticsearch_data:/usr/share/elasticsearch/data
     restart: unless-stopped
     x-casaos:
-      author: tigerinus
-      category: Developer
-      container:
-        port_map: "9200"
-      description:
-        en_US: Elasticsearch is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.
-        zh_CN: Elasticsearch 是一个分布式的、RESTful 风格的搜索和分析引擎，能够解决越来越多的用例。
-      developer: elastic
-      icon: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-elasticsearch-logo.png
-      title:
-        en_US: Elasticsearch
+      port_map: "9200"
   kibana:
     image: kibana:8.6.2
     environment:
@@ -51,24 +41,24 @@ services:
       - elasticsearch
     restart: unless-stopped
     x-casaos:
-      author: tigerinus
-      category: Developer
-      container:
-        port_map: "5601"
-      description:
-        en_US: Kibana lets you visualize your Elasticsearch data and navigate the Elastic Stack
-        zh_CN: Kibana 让您可以可视化 Elasticsearch 数据并导航 Elastic Stack
-      developer: elastic
-      icon: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-kibana-logo.png
-      title:
-        en_US: Kibana
+      port_map: "5601"
 
 volumes:
   elasticsearch_data:
   kibana_data:
 
+
 x-casaos:
   architectures:
     - amd64
     - arm64
-  main_app: kibana
+  main: kibana
+  author: tigerinus
+  category: Developer
+  description:
+    en_US: Elasticsearch is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.
+    zh_CN: Elasticsearch 是一个分布式的、RESTful 风格的搜索和分析引擎，能够解决越来越多的用例。
+  developer: elastic
+  icon: https://d1q6f0aelx0por.cloudfront.net/product-logos/library-elasticsearch-logo.png
+  title:
+    en_US: Elasticsearch
