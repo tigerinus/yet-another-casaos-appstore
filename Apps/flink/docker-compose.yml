@@ -8,8 +8,6 @@ services:
     environment:
       - "FLINK_PROPERTIES=jobmanager.rpc.address: jobmanager"
     restart: unless-stopped
-    x-casaos:
-      port_map: "8081"
   taskmanager:
     image: flink:1.16
     command: taskmanager
@@ -34,3 +32,4 @@ x-casaos:
   icon: https://svn.apache.org/repos/asf/flink/site/img/logo/png/200/flink_squirrel_200_color.png
   title:
     en_us: Apache Flink
+  port_map: "8081"
